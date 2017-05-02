@@ -67,11 +67,20 @@ Partial Class frmMain
         Me.pnleFlexHeader = New System.Windows.Forms.Panel()
         Me.pnleFlexData = New System.Windows.Forms.Panel()
         Me.grpeFlexData = New System.Windows.Forms.GroupBox()
+        Me.txtPayloadNewPun = New System.Windows.Forms.TextBox()
+        Me.txtPayloadControl = New System.Windows.Forms.TextBox()
+        Me.lblPayloadControl = New System.Windows.Forms.Label()
+        Me.lblPayloadOldPun = New System.Windows.Forms.Label()
+        Me.lblPayloadNewPun = New System.Windows.Forms.Label()
+        Me.txtPayloadOldPun = New System.Windows.Forms.TextBox()
+        Me.lblIndex = New System.Windows.Forms.Label()
+        Me.txtPayloadIndex = New System.Windows.Forms.TextBox()
         Me.grpConnect.SuspendLayout()
         Me.grpRead.SuspendLayout()
         Me.grpeFlexHeader.SuspendLayout()
         Me.pnleFlexHeader.SuspendLayout()
         Me.pnleFlexData.SuspendLayout()
+        Me.grpeFlexData.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnConnect
@@ -496,6 +505,14 @@ Partial Class frmMain
         '
         'grpeFlexData
         '
+        Me.grpeFlexData.Controls.Add(Me.txtPayloadIndex)
+        Me.grpeFlexData.Controls.Add(Me.lblIndex)
+        Me.grpeFlexData.Controls.Add(Me.txtPayloadOldPun)
+        Me.grpeFlexData.Controls.Add(Me.lblPayloadNewPun)
+        Me.grpeFlexData.Controls.Add(Me.lblPayloadOldPun)
+        Me.grpeFlexData.Controls.Add(Me.lblPayloadControl)
+        Me.grpeFlexData.Controls.Add(Me.txtPayloadControl)
+        Me.grpeFlexData.Controls.Add(Me.txtPayloadNewPun)
         Me.grpeFlexData.Location = New System.Drawing.Point(5, 3)
         Me.grpeFlexData.Name = "grpeFlexData"
         Me.grpeFlexData.Size = New System.Drawing.Size(460, 323)
@@ -503,6 +520,72 @@ Partial Class frmMain
         Me.grpeFlexData.TabStop = False
         Me.grpeFlexData.Text = "Data to Write"
         Me.grpeFlexData.Visible = False
+        '
+        'txtPayloadNewPun
+        '
+        Me.txtPayloadNewPun.Location = New System.Drawing.Point(89, 75)
+        Me.txtPayloadNewPun.Name = "txtPayloadNewPun"
+        Me.txtPayloadNewPun.Size = New System.Drawing.Size(135, 20)
+        Me.txtPayloadNewPun.TabIndex = 0
+        '
+        'txtPayloadControl
+        '
+        Me.txtPayloadControl.Location = New System.Drawing.Point(89, 22)
+        Me.txtPayloadControl.Name = "txtPayloadControl"
+        Me.txtPayloadControl.Size = New System.Drawing.Size(39, 20)
+        Me.txtPayloadControl.TabIndex = 1
+        Me.txtPayloadControl.Text = "0"
+        '
+        'lblPayloadControl
+        '
+        Me.lblPayloadControl.AutoSize = True
+        Me.lblPayloadControl.Location = New System.Drawing.Point(14, 25)
+        Me.lblPayloadControl.Name = "lblPayloadControl"
+        Me.lblPayloadControl.Size = New System.Drawing.Size(69, 13)
+        Me.lblPayloadControl.TabIndex = 40
+        Me.lblPayloadControl.Text = "Control Word"
+        '
+        'lblPayloadOldPun
+        '
+        Me.lblPayloadOldPun.AutoSize = True
+        Me.lblPayloadOldPun.Location = New System.Drawing.Point(31, 51)
+        Me.lblPayloadOldPun.Name = "lblPayloadOldPun"
+        Me.lblPayloadOldPun.Size = New System.Drawing.Size(45, 13)
+        Me.lblPayloadOldPun.TabIndex = 41
+        Me.lblPayloadOldPun.Text = "Old Pun"
+        '
+        'lblPayloadNewPun
+        '
+        Me.lblPayloadNewPun.AutoSize = True
+        Me.lblPayloadNewPun.Location = New System.Drawing.Point(25, 78)
+        Me.lblPayloadNewPun.Name = "lblPayloadNewPun"
+        Me.lblPayloadNewPun.Size = New System.Drawing.Size(51, 13)
+        Me.lblPayloadNewPun.TabIndex = 42
+        Me.lblPayloadNewPun.Text = "New Pun"
+        '
+        'txtPayloadOldPun
+        '
+        Me.txtPayloadOldPun.Location = New System.Drawing.Point(89, 48)
+        Me.txtPayloadOldPun.Name = "txtPayloadOldPun"
+        Me.txtPayloadOldPun.Size = New System.Drawing.Size(135, 20)
+        Me.txtPayloadOldPun.TabIndex = 43
+        '
+        'lblIndex
+        '
+        Me.lblIndex.AutoSize = True
+        Me.lblIndex.Location = New System.Drawing.Point(43, 104)
+        Me.lblIndex.Name = "lblIndex"
+        Me.lblIndex.Size = New System.Drawing.Size(33, 13)
+        Me.lblIndex.TabIndex = 44
+        Me.lblIndex.Text = "Index"
+        '
+        'txtPayloadIndex
+        '
+        Me.txtPayloadIndex.Location = New System.Drawing.Point(89, 101)
+        Me.txtPayloadIndex.Name = "txtPayloadIndex"
+        Me.txtPayloadIndex.Size = New System.Drawing.Size(39, 20)
+        Me.txtPayloadIndex.TabIndex = 45
+        Me.txtPayloadIndex.Text = "0"
         '
         'frmMain
         '
@@ -524,6 +607,8 @@ Partial Class frmMain
         Me.grpeFlexHeader.PerformLayout()
         Me.pnleFlexHeader.ResumeLayout(False)
         Me.pnleFlexData.ResumeLayout(False)
+        Me.grpeFlexData.ResumeLayout(False)
+        Me.grpeFlexData.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -571,4 +656,12 @@ Partial Class frmMain
     Friend WithEvents chkHeaderSeperate As System.Windows.Forms.CheckBox
     Friend WithEvents txtPacketCount As TextBox
     Friend WithEvents lblPacketCnt As Label
+    Friend WithEvents txtPayloadNewPun As TextBox
+    Friend WithEvents txtPayloadControl As TextBox
+    Friend WithEvents lblPayloadControl As Label
+    Friend WithEvents lblPayloadNewPun As Label
+    Friend WithEvents lblPayloadOldPun As Label
+    Friend WithEvents txtPayloadOldPun As TextBox
+    Friend WithEvents lblIndex As Label
+    Friend WithEvents txtPayloadIndex As TextBox
 End Class
