@@ -1,0 +1,15 @@
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\bin\Debug\chrisTcpWriter.exe.config
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\bin\Debug\chrisTcpWriter.exe.manifest
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\bin\Debug\chrisTcpWriter.application
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\bin\Debug\chrisTcpWriter.exe
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\bin\Debug\chrisTcpWriter.pdb
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\bin\Debug\chrisTcpWriter.xml
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\obj\Debug\chrisTcpWriter.vbprojResolveAssemblyReference.cache
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\obj\Debug\chrisTcpWriter.frmMain.resources
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\obj\Debug\chrisTcpWriter.Resources.resources
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\obj\Debug\chrisTcpWriter.vbproj.GenerateResource.Cache
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\obj\Debug\chrisTcpWriter.exe.manifest
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\obj\Debug\chrisTcpWriter.application
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\obj\Debug\chrisTcpWriter.exe
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\obj\Debug\chrisTcpWriter.xml
+C:\Users\cmgrass\chrisTcpWriter\chrisTcpWriter\obj\Debug\chrisTcpWriter.pdb
