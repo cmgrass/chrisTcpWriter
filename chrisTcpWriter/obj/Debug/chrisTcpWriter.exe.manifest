@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="chrisTcpWriter.exe" size="42496">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="chrisTcpWriter.exe" size="43520">
       <assemblyIdentity name="chrisTcpWriter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>p8jMjFq+WuiScmxWCG60xrFTA94FTcP/7JjENCDkQJg=</dsig:DigestValue>
+        <dsig:DigestValue>hBaarivgaKJLYtlp9JoyIG3eug7cBtXYRJk+1YgK5XI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

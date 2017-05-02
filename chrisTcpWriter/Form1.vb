@@ -489,14 +489,122 @@ Public Class frmMain
                 header.numberPackets = CInt(txtPacketCount.Text)
                 header.lengthPacket = CInt(txtPacketLength.Text)
 
+
+
                 ' Marshaling "headerTnT" Structure (to Byte array)
                 Dim headerBytes() As Byte           ' Must convert "header Structure" to "Byte Array" for writing data to network
                 Dim headerPtr As IntPtr = Marshal.AllocHGlobal(Marshal.SizeOf(header))
                 ReDim headerBytes(Marshal.SizeOf(header) - 1)
-                Marshal.StructureToPtr(header, headerPtr, False)
-                Marshal.Copy(headerPtr, headerBytes, 0, Marshal.SizeOf(header))
-                Marshal.FreeHGlobal(headerPtr)
 
+                ' --- Convert from little, to big endian ---
+                ' Device type
+                Dim bytes(2) As Byte
+                bytes = BitConverter.GetBytes(header.deviceType)
+                Array.Reverse(bytes)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 0, 2)
+
+                ' Spare Bytes
+                ReDim bytes(1)
+                bytes = BitConverter.GetBytes(header.spare0)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 2, 1)
+                bytes = BitConverter.GetBytes(header.spare1)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 3, 1)
+                bytes = BitConverter.GetBytes(header.spare2)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 4, 1)
+                bytes = BitConverter.GetBytes(header.spare3)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 5, 1)
+                bytes = BitConverter.GetBytes(header.spare4)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 6, 1)
+                bytes = BitConverter.GetBytes(header.spare5)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 7, 1)
+
+                ' StationID
+                ReDim bytes(2)
+                bytes = BitConverter.GetBytes(header.stationID)
+                Array.Reverse(bytes)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 8, 2)
+
+                ' FootprintID
+                ReDim bytes(2)
+                bytes = BitConverter.GetBytes(header.footprintID)
+                Array.Reverse(bytes)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 10, 2)
+
+                ' Software Bytes
+                ReDim bytes(1)
+                bytes = BitConverter.GetBytes(header.softwareName_00)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 12, 1)
+                bytes = BitConverter.GetBytes(header.softwareName_01)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 13, 1)
+                bytes = BitConverter.GetBytes(header.softwareName_02)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 14, 1)
+                bytes = BitConverter.GetBytes(header.softwareName_03)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 15, 1)
+                bytes = BitConverter.GetBytes(header.softwareName_04)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 16, 1)
+                bytes = BitConverter.GetBytes(header.softwareName_05)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 17, 1)
+                bytes = BitConverter.GetBytes(header.softwareName_06)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 18, 1)
+                bytes = BitConverter.GetBytes(header.softwareName_07)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 19, 1)
+
+                ' Station Index
+                ReDim bytes(1)
+                bytes = BitConverter.GetBytes(header.stationIndex)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 20, 1)
+
+                ' Short Description Bytes
+                ReDim bytes(1)
+                bytes = BitConverter.GetBytes(header.shortDescription_00)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 21, 1)
+                bytes = BitConverter.GetBytes(header.shortDescription_01)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 22, 1)
+                bytes = BitConverter.GetBytes(header.shortDescription_02)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 23, 1)
+                bytes = BitConverter.GetBytes(header.shortDescription_03)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 24, 1)
+                bytes = BitConverter.GetBytes(header.shortDescription_04)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 25, 1)
+                bytes = BitConverter.GetBytes(header.shortDescription_05)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 26, 1)
+                bytes = BitConverter.GetBytes(header.shortDescription_06)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 27, 1)
+                bytes = BitConverter.GetBytes(header.shortDescription_07)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 28, 1)
+                bytes = BitConverter.GetBytes(header.shortDescription_08)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 29, 1)
+                bytes = BitConverter.GetBytes(header.shortDescription_09)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 30, 1)
+                bytes = BitConverter.GetBytes(header.shortDescription_10)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 31, 1)
+
+                ' Buffered Duration Bytes
+                ReDim bytes(4)
+                bytes = BitConverter.GetBytes(header.bufferedDuration)
+                Array.Reverse(bytes)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 32, 4)
+
+                ' PacketID
+                ReDim bytes(2)
+                bytes = BitConverter.GetBytes(header.packetID)
+                Array.Reverse(bytes)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 36, 2)
+
+                ' Number of Packets
+                ReDim bytes(2)
+                bytes = BitConverter.GetBytes(header.numberPackets)
+                Array.Reverse(bytes)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 38, 2)
+
+                ' Packet Legnth
+                ReDim bytes(4)
+                bytes = BitConverter.GetBytes(header.lengthPacket)
+                Array.Reverse(bytes)
+                Buffer.BlockCopy(bytes, 0, headerBytes, 40, 4)
+
+
+                ' --- Populate Payload Data ---
                 ' Declare Part Status Bits (32)
                 Dim partStatusDataBits(3) As Byte
 
