@@ -496,7 +496,7 @@ Public Class frmMain
                 Dim headerPtr As IntPtr = Marshal.AllocHGlobal(Marshal.SizeOf(header))
                 ReDim headerBytes(Marshal.SizeOf(header) - 1)
 
-                ' --- Convert from little, to big endian ---
+                ' ----- Convert from little, to big endian -----
                 ' Device type
                 Dim bytes(2) As Byte
                 bytes = BitConverter.GetBytes(header.deviceType)
@@ -604,44 +604,45 @@ Public Class frmMain
                 Buffer.BlockCopy(bytes, 0, headerBytes, 40, 4)
 
 
-                ' --- Populate Payload Data ---
-                ' Declare Part Status Bits (32)
-                Dim partStatusDataBits(3) As Byte
+                ' ----- Populate Payload Data -----
+                ' Setup Network Write Data
+                Dim writeBuffer() As Byte
+                ReDim writeBuffer(CInt(txtPacketLength.Text) + 44 - 1)
+                Buffer.BlockCopy(headerBytes, 0, writeBuffer, 0, 44)           ' Write HEADER
 
-                partStatusDataBits(0) = 0
+                ' Get user input, convert to byte array, block copy
+                ' Control Word
+                ReDim bytes(4)
+                bytes = BitConverter.GetBytes(CInt(txtPayloadControl.Text))
+                Array.Reverse(bytes)
+                Buffer.BlockCopy(bytes, 0, writeBuffer, 44 + 0, 4)
 
-                partStatusDataBits(1) = 0
+                ' Old PUN
+                Dim dataString As String = txtPayloadOldPun.Text
+                ReDim bytes(dataString.Length)
+                bytes = System.Text.Encoding.ASCII.GetBytes(dataString)
+                Buffer.BlockCopy(bytes, 0, writeBuffer, 44 + 4, dataString.Length)
 
-                partStatusDataBits(2) = 0
+                ' New PUN
+                dataString = txtPayloadNewPun.Text
+                ReDim bytes(dataString.Length)
+                bytes = System.Text.Encoding.ASCII.GetBytes(dataString)
+                Buffer.BlockCopy(bytes, 0, writeBuffer, 44 + 44, dataString.Length)
 
-                partStatusDataBits(3) = 0
+                ' Index
+                ReDim bytes(2)
+                bytes = BitConverter.GetBytes(CInt(txtPayloadIndex.Text))
+                Array.Reverse(bytes)
+                Buffer.BlockCopy(bytes, 0, writeBuffer, 44 + 2786, 2)
 
-                ' Part Status "SN Echo" (44 Bytes)
-                Dim partStatusSNEcho(43) As Byte
-                Dim i As SByte
-                For i = 0 To 43
-                    partStatusSNEcho(i) = 0         ' Fill with zeros for now (temporary)
-                Next
-
-                ' Part Status Packet Buffer
-                Dim partStatusBuffer() As Byte
-                'ReDim partStatusBuffer()
-                ReDim partStatusBuffer(CInt(txtPacketLength.Text) + 44 - 1)
-                Buffer.BlockCopy(headerBytes, 0, partStatusBuffer, 0, 44)           ' Write HEADER
-                If (CInt(txtPacketLength.Text)) > (44 + 4) Then
-                    Buffer.BlockCopy(partStatusDataBits, 0, partStatusBuffer, 44, 4)            ' Write STATUS 
-                    If (CInt(txtPacketLength.Text)) > (44 + 4 + 44) Then
-                        Buffer.BlockCopy(partStatusSNEcho, 0, partStatusBuffer, 48, 44)         ' Write SERIAL NUMBER ECHO
-                    End If
-                End If
-
+                ' ----- Write Data To Network -----
                 If chkHeaderSeperate.Checked Then
                     ' Write TCP data to network
-                    plcClientStream.Write(partStatusBuffer, 0, 44)          ' Send Header
-                    plcClientStream.Write(partStatusBuffer, 44, CInt(txtPacketLength.Text))         ' Send Payload
+                    plcClientStream.Write(writeBuffer, 0, 44)          ' Send Header
+                    plcClientStream.Write(writeBuffer, 44, CInt(txtPacketLength.Text))         ' Send Payload
                 Else
                     ' Write TCP data to network
-                    plcClientStream.Write(partStatusBuffer, 0, CInt(txtPacketLength.Text) + 44)         ' Send header and payload together
+                    plcClientStream.Write(writeBuffer, 0, CInt(txtPacketLength.Text) + 44)         ' Send header and payload together
                 End If
 
         End Select
