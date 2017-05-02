@@ -106,35 +106,39 @@ Public Class frmMain
 
     ' eFlex Header Structure
     Public Structure eFlexHeader
-        Public deviceType As UShort             ' Byte: (0,1)
-        Public packetNumber As UShort           ' Byte: (2,3)
-        Public senderIP As UInteger             ' Byte: (4,7)
-        Public stationID As UShort              ' Byte: (8,9)
-        Public taskID As UShort                 ' Byte: (10,11)
-        Public softwareName_00 As Byte           ' Byte: (12)
-        Public softwareName_01 As Byte           ' Byte: (13)
-        Public softwareName_02 As Byte           ' Byte: (14)
-        Public softwareName_03 As Byte           ' Byte: (15)
-        Public softwareName_04 As Byte           ' Byte: (16)
-        Public softwareName_05 As Byte           ' Byte: (17)
-        Public softwareName_06 As Byte           ' Byte: (18)
-        Public softwareName_07 As Byte           ' Byte: (19)
-        Public stationIndex As Byte             ' Byte: (20)
-        Public shortDescription_00 As Byte       ' Byte: (21)
-        Public shortDescription_01 As Byte       ' Byte: (22)
-        Public shortDescription_02 As Byte       ' Byte: (23)
-        Public shortDescription_03 As Byte       ' Byte: (24)
-        Public shortDescription_04 As Byte       ' Byte: (25)
-        Public shortDescription_05 As Byte       ' Byte: (26)
-        Public shortDescription_06 As Byte       ' Byte: (27)
-        Public shortDescription_07 As Byte       ' Byte: (28)
-        Public shortDescription_08 As Byte       ' Byte: (29)
-        Public shortDescription_09 As Byte       ' Byte: (30)
-        Public shortDescription_10 As Byte       ' Byte: (31)
-        Public lengthEntire As UInteger         ' Byte: (32,35)
-        Public packetID As UShort               ' Byte: (36,37)
-        Public numberPackets As UShort          ' Byte: (38,39)
-        Public lengthPacket As UInteger         ' Byte: (40,43)
+        Public deviceType As UShort ' Byte: (0,1)
+        Public spare0 As Byte   ' Byte: (2)
+        Public spare1 As Byte   ' Byte: (3)
+        Public spare2 As Byte   ' Byte: (4)
+        Public spare3 As Byte   ' Byte: (5)
+        Public spare4 As Byte   ' Byte: (6)
+        Public spare5 As Byte   ' Byte: (7)
+        Public stationID As UShort  ' Byte: (8,9)
+        Public footprintID As UShort    ' Byte: (10,11)
+        Public softwareName_00 As Byte  ' Byte: (12)
+        Public softwareName_01 As Byte  ' Byte: (13)
+        Public softwareName_02 As Byte  ' Byte: (14)
+        Public softwareName_03 As Byte  ' Byte: (15)
+        Public softwareName_04 As Byte  ' Byte: (16)
+        Public softwareName_05 As Byte  ' Byte: (17)
+        Public softwareName_06 As Byte  ' Byte: (18)
+        Public softwareName_07 As Byte  ' Byte: (19)
+        Public stationIndex As Byte ' Byte: (20)
+        Public shortDescription_00 As Byte  ' Byte: (21)
+        Public shortDescription_01 As Byte  ' Byte: (22)
+        Public shortDescription_02 As Byte  ' Byte: (23)
+        Public shortDescription_03 As Byte  ' Byte: (24)
+        Public shortDescription_04 As Byte  ' Byte: (25)
+        Public shortDescription_05 As Byte  ' Byte: (26)
+        Public shortDescription_06 As Byte  ' Byte: (27)
+        Public shortDescription_07 As Byte  ' Byte: (28)
+        Public shortDescription_08 As Byte  ' Byte: (29)
+        Public shortDescription_09 As Byte  ' Byte: (30)
+        Public shortDescription_10 As Byte  ' Byte: (31)
+        Public bufferedDuration As UInteger ' Byte: (32,35)
+        Public packetID As UShort   ' Byte: (36,37)
+        Public numberPackets As UShort  ' Byte: (38,39)
+        Public lengthPacket As UInteger ' Byte: (40,43)
     End Structure
 
 
@@ -308,69 +312,61 @@ Public Class frmMain
             Case 0          ' Rockwell TCP/IP
 
                 ' Declare eFlex TNT Header Structure
-                Dim headerTnT As eFlexHeader
+                Dim header As eFlexHeader
 
                 ' Build eFlex TNT Header Structure
-                headerTnT.deviceType = CInt(txtHeaderDeviceType.Text)
-                headerTnT.packetNumber = 0
-                headerTnT.senderIP = 0
-                headerTnT.stationID = CInt(txtStationID.Text)
-                headerTnT.taskID = 0
-                headerTnT.softwareName_00 = Asc(txtSoftware_00.Text)
-                headerTnT.softwareName_01 = Asc(txtSoftware_01.Text)
-                headerTnT.softwareName_02 = Asc(txtSoftware_02.Text)
-                headerTnT.softwareName_03 = Asc(txtSoftware_03.Text)
-                headerTnT.softwareName_04 = Asc(txtSoftware_04.Text)
-                headerTnT.softwareName_05 = Asc(txtSoftware_05.Text)
-                headerTnT.softwareName_06 = Asc(txtSoftware_06.Text)
-                headerTnT.softwareName_07 = Asc(txtSoftware_07.Text)
-                headerTnT.stationIndex = 0
-                headerTnT.shortDescription_00 = 0
-                headerTnT.shortDescription_01 = 0
-                headerTnT.shortDescription_02 = 0
-                headerTnT.shortDescription_03 = 0
-                headerTnT.shortDescription_04 = 0
-                headerTnT.shortDescription_05 = 0
-                headerTnT.shortDescription_06 = 0
-                headerTnT.shortDescription_07 = 0
-                headerTnT.shortDescription_08 = 0
-                headerTnT.shortDescription_09 = 0
-                headerTnT.shortDescription_10 = 0
-                headerTnT.lengthEntire = 0
-                headerTnT.packetID = CInt(txtPacketType.Text)
-                headerTnT.numberPackets = 0
-                headerTnT.lengthPacket = CInt(txtPacketLength.Text)
+                header.deviceType = CInt(txtHeaderDeviceType.Text)
+                header.spare0 = 0
+                header.spare1 = 0
+                header.spare2 = 0
+                header.spare3 = 0
+                header.spare4 = 0
+                header.spare5 = 0
+                header.stationID = CInt(txtStationID.Text)
+                header.footprintID = 0
+                header.softwareName_00 = Asc(txtSoftware_00.Text)
+                header.softwareName_01 = Asc(txtSoftware_01.Text)
+                header.softwareName_02 = Asc(txtSoftware_02.Text)
+                header.softwareName_03 = Asc(txtSoftware_03.Text)
+                header.softwareName_04 = Asc(txtSoftware_04.Text)
+                header.softwareName_05 = Asc(txtSoftware_05.Text)
+                header.softwareName_06 = Asc(txtSoftware_06.Text)
+                header.softwareName_07 = Asc(txtSoftware_07.Text)
+                header.stationIndex = 0
+                header.shortDescription_00 = 0
+                header.shortDescription_01 = 0
+                header.shortDescription_02 = 0
+                header.shortDescription_03 = 0
+                header.shortDescription_04 = 0
+                header.shortDescription_05 = 0
+                header.shortDescription_06 = 0
+                header.shortDescription_07 = 0
+                header.shortDescription_08 = 0
+                header.shortDescription_09 = 0
+                header.shortDescription_10 = 0
+                header.bufferedDuration = 0
+                header.packetID = CInt(txtPacketType.Text)
+                header.numberPackets = CInt(txtPacketCount.Text)
+                header.lengthPacket = CInt(txtPacketLength.Text)
 
                 ' Marshaling "headerTnT" Structure (to Byte array)
                 Dim headerBytes() As Byte           ' Must convert "header Structure" to "Byte Array" for writing data to network
-                Dim headerPtr As IntPtr = Marshal.AllocHGlobal(Marshal.SizeOf(headerTnT))
-                ReDim headerBytes(Marshal.SizeOf(headerTnT) - 1)
-                Marshal.StructureToPtr(headerTnT, headerPtr, False)
-                Marshal.Copy(headerPtr, headerBytes, 0, Marshal.SizeOf(headerTnT))
+                Dim headerPtr As IntPtr = Marshal.AllocHGlobal(Marshal.SizeOf(header))
+                ReDim headerBytes(Marshal.SizeOf(header) - 1)
+                Marshal.StructureToPtr(header, headerPtr, False)
+                Marshal.Copy(headerPtr, headerBytes, 0, Marshal.SizeOf(header))
                 Marshal.FreeHGlobal(headerPtr)
 
                 ' Declare Part Status Bits (32)
                 Dim partStatusDataBits(3) As Byte
 
-                partStatusDataBits(0) = ((Convert.ToByte(chkPartOkay.Checked) * 1) + (Convert.ToByte(chkPartMarried.Checked) * 2) + _
-                                         (Convert.ToByte(chkPartDivorced.Checked) * 4) + (Convert.ToByte(chkChildPrevMarg.Checked) * 8) + _
-                                         (Convert.ToByte(chkParentContained.Checked) * 16) + (Convert.ToByte(chkChildContained.Checked) * 32) + _
-                                         (Convert.ToByte(chkParentRejected.Checked) * 64) + (Convert.ToByte(chkChiledRejectedSubSys.Checked) * 128))
+                partStatusDataBits(0) = 0
 
-                partStatusDataBits(1) = ((Convert.ToByte(chkIncorrectPNmarg.Checked) * 1) + (Convert.ToByte(chkPartNotFound.Checked) * 2) + _
-                                         (Convert.ToByte(chkChildNotFound.Checked) * 4) + (Convert.ToByte(chkServerError.Checked) * 8) + _
-                                         (Convert.ToByte(chkPartAlreadyRan.Checked) * 16) + (Convert.ToByte(chkConfigError.Checked) * 32) + _
-                                         (Convert.ToByte(chkInvalidPacket.Checked) * 64) + (Convert.ToByte(chkPrereqNotMet.Checked) * 128))
+                partStatusDataBits(1) = 0
 
-                partStatusDataBits(2) = ((Convert.ToByte(chkMasterSNRFIDready.Checked) * 1) + (Convert.ToByte(chkRecievedSNStatus.Checked) * 2) + _
-                                         (Convert.ToByte(chkPartSeparatedOkay.Checked) * 4) + (Convert.ToByte(chkWrongPartForSeparation.Checked) * 8) + _
-                                         (Convert.ToByte(chkNotRequired.Checked) * 16) + (Convert.ToByte(chkWrongPartForModel.Checked) * 32) + _
-                                         (Convert.ToByte(chkToteMaxCycles.Checked) * 64) + (Convert.ToByte(chkChildPrereqNOK.Checked) * 128))
+                partStatusDataBits(2) = 0
 
-                partStatusDataBits(3) = ((Convert.ToByte(chkSpare_24.Checked) * 1) + (Convert.ToByte(chkSpare_25.Checked) * 2) + _
-                                         (Convert.ToByte(chkSpare_26.Checked) * 4) + (Convert.ToByte(chkSpare_27.Checked) * 8) + _
-                                         (Convert.ToByte(chkSpare_28.Checked) * 16) + (Convert.ToByte(chkSpare_29.Checked) * 32) + _
-                                         (Convert.ToByte(chkSpare_30.Checked) * 64) + (Convert.ToByte(chkSpare_31.Checked) * 128))
+                partStatusDataBits(3) = 0
 
                 ' Part Status "SN Echo" (44 Bytes)
                 Dim partStatusSNEcho(43) As Byte
@@ -456,69 +452,61 @@ Public Class frmMain
             Case 2          ' Siemens TCP/IP
 
                 ' Declare eFlex TNT Header Structure
-                Dim headerTnT As eFlexHeader
+                Dim header As eFlexHeader
 
                 ' Build eFlex TNT Header Structure
-                headerTnT.deviceType = CInt(txtHeaderDeviceType.Text)
-                headerTnT.packetNumber = 0
-                headerTnT.senderIP = 0
-                headerTnT.stationID = CInt(txtStationID.Text)
-                headerTnT.taskID = 0
-                headerTnT.softwareName_00 = Asc(txtSoftware_00.Text)
-                headerTnT.softwareName_01 = Asc(txtSoftware_01.Text)
-                headerTnT.softwareName_02 = Asc(txtSoftware_02.Text)
-                headerTnT.softwareName_03 = Asc(txtSoftware_03.Text)
-                headerTnT.softwareName_04 = Asc(txtSoftware_04.Text)
-                headerTnT.softwareName_05 = Asc(txtSoftware_05.Text)
-                headerTnT.softwareName_06 = Asc(txtSoftware_06.Text)
-                headerTnT.softwareName_07 = Asc(txtSoftware_07.Text)
-                headerTnT.stationIndex = 0
-                headerTnT.shortDescription_00 = 0
-                headerTnT.shortDescription_01 = 0
-                headerTnT.shortDescription_02 = 0
-                headerTnT.shortDescription_03 = 0
-                headerTnT.shortDescription_04 = 0
-                headerTnT.shortDescription_05 = 0
-                headerTnT.shortDescription_06 = 0
-                headerTnT.shortDescription_07 = 0
-                headerTnT.shortDescription_08 = 0
-                headerTnT.shortDescription_09 = 0
-                headerTnT.shortDescription_10 = 0
-                headerTnT.lengthEntire = 0
-                headerTnT.packetID = CInt(txtPacketType.Text)
-                headerTnT.numberPackets = 0
-                headerTnT.lengthPacket = CInt(txtPacketLength.Text)
+                header.deviceType = CInt(txtHeaderDeviceType.Text)
+                header.spare0 = 0
+                header.spare1 = 0
+                header.spare2 = 0
+                header.spare3 = 0
+                header.spare4 = 0
+                header.spare5 = 0
+                header.stationID = CInt(txtStationID.Text)
+                header.footprintID = 0
+                header.softwareName_00 = Asc(txtSoftware_00.Text)
+                header.softwareName_01 = Asc(txtSoftware_01.Text)
+                header.softwareName_02 = Asc(txtSoftware_02.Text)
+                header.softwareName_03 = Asc(txtSoftware_03.Text)
+                header.softwareName_04 = Asc(txtSoftware_04.Text)
+                header.softwareName_05 = Asc(txtSoftware_05.Text)
+                header.softwareName_06 = Asc(txtSoftware_06.Text)
+                header.softwareName_07 = Asc(txtSoftware_07.Text)
+                header.stationIndex = 0
+                header.shortDescription_00 = 0
+                header.shortDescription_01 = 0
+                header.shortDescription_02 = 0
+                header.shortDescription_03 = 0
+                header.shortDescription_04 = 0
+                header.shortDescription_05 = 0
+                header.shortDescription_06 = 0
+                header.shortDescription_07 = 0
+                header.shortDescription_08 = 0
+                header.shortDescription_09 = 0
+                header.shortDescription_10 = 0
+                header.bufferedDuration = 0
+                header.packetID = CInt(txtPacketType.Text)
+                header.numberPackets = CInt(txtPacketCount.Text)
+                header.lengthPacket = CInt(txtPacketLength.Text)
 
                 ' Marshaling "headerTnT" Structure (to Byte array)
                 Dim headerBytes() As Byte           ' Must convert "header Structure" to "Byte Array" for writing data to network
-                Dim headerPtr As IntPtr = Marshal.AllocHGlobal(Marshal.SizeOf(headerTnT))
-                ReDim headerBytes(Marshal.SizeOf(headerTnT) - 1)
-                Marshal.StructureToPtr(headerTnT, headerPtr, False)
-                Marshal.Copy(headerPtr, headerBytes, 0, Marshal.SizeOf(headerTnT))
+                Dim headerPtr As IntPtr = Marshal.AllocHGlobal(Marshal.SizeOf(header))
+                ReDim headerBytes(Marshal.SizeOf(header) - 1)
+                Marshal.StructureToPtr(header, headerPtr, False)
+                Marshal.Copy(headerPtr, headerBytes, 0, Marshal.SizeOf(header))
                 Marshal.FreeHGlobal(headerPtr)
 
                 ' Declare Part Status Bits (32)
                 Dim partStatusDataBits(3) As Byte
 
-                partStatusDataBits(0) = ((Convert.ToByte(chkPartOkay.Checked) * 1) + (Convert.ToByte(chkPartMarried.Checked) * 2) + _
-                                         (Convert.ToByte(chkPartDivorced.Checked) * 4) + (Convert.ToByte(chkChildPrevMarg.Checked) * 8) + _
-                                         (Convert.ToByte(chkParentContained.Checked) * 16) + (Convert.ToByte(chkChildContained.Checked) * 32) + _
-                                         (Convert.ToByte(chkParentRejected.Checked) * 64) + (Convert.ToByte(chkChiledRejectedSubSys.Checked) * 128))
+                partStatusDataBits(0) = 0
 
-                partStatusDataBits(1) = ((Convert.ToByte(chkIncorrectPNmarg.Checked) * 1) + (Convert.ToByte(chkPartNotFound.Checked) * 2) + _
-                                         (Convert.ToByte(chkChildNotFound.Checked) * 4) + (Convert.ToByte(chkServerError.Checked) * 8) + _
-                                         (Convert.ToByte(chkPartAlreadyRan.Checked) * 16) + (Convert.ToByte(chkConfigError.Checked) * 32) + _
-                                         (Convert.ToByte(chkInvalidPacket.Checked) * 64) + (Convert.ToByte(chkPrereqNotMet.Checked) * 128))
+                partStatusDataBits(1) = 0
 
-                partStatusDataBits(2) = ((Convert.ToByte(chkMasterSNRFIDready.Checked) * 1) + (Convert.ToByte(chkRecievedSNStatus.Checked) * 2) + _
-                                         (Convert.ToByte(chkPartSeparatedOkay.Checked) * 4) + (Convert.ToByte(chkWrongPartForSeparation.Checked) * 8) + _
-                                         (Convert.ToByte(chkNotRequired.Checked) * 16) + (Convert.ToByte(chkWrongPartForModel.Checked) * 32) + _
-                                         (Convert.ToByte(chkToteMaxCycles.Checked) * 64) + (Convert.ToByte(chkChildPrereqNOK.Checked) * 128))
+                partStatusDataBits(2) = 0
 
-                partStatusDataBits(3) = ((Convert.ToByte(chkSpare_24.Checked) * 1) + (Convert.ToByte(chkSpare_25.Checked) * 2) + _
-                                         (Convert.ToByte(chkSpare_26.Checked) * 4) + (Convert.ToByte(chkSpare_27.Checked) * 8) + _
-                                         (Convert.ToByte(chkSpare_28.Checked) * 16) + (Convert.ToByte(chkSpare_29.Checked) * 32) + _
-                                         (Convert.ToByte(chkSpare_30.Checked) * 64) + (Convert.ToByte(chkSpare_31.Checked) * 128))
+                partStatusDataBits(3) = 0
 
                 ' Part Status "SN Echo" (44 Bytes)
                 Dim partStatusSNEcho(43) As Byte
