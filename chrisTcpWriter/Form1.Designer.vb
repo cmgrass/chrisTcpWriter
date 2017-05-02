@@ -39,6 +39,8 @@ Partial Class frmMain
         Me.txtHeaderDeviceType = New System.Windows.Forms.TextBox()
         Me.lblHeaderDeviceType = New System.Windows.Forms.Label()
         Me.grpeFlexHeader = New System.Windows.Forms.GroupBox()
+        Me.txtPacketCount = New System.Windows.Forms.TextBox()
+        Me.lblPacketCnt = New System.Windows.Forms.Label()
         Me.chkHeaderSeperate = New System.Windows.Forms.CheckBox()
         Me.txtSoftware_07 = New System.Windows.Forms.TextBox()
         Me.txtPacketLength = New System.Windows.Forms.TextBox()
@@ -65,8 +67,6 @@ Partial Class frmMain
         Me.pnleFlexHeader = New System.Windows.Forms.Panel()
         Me.pnleFlexData = New System.Windows.Forms.Panel()
         Me.grpeFlexData = New System.Windows.Forms.GroupBox()
-        Me.txtPacketCount = New System.Windows.Forms.TextBox()
-        Me.lblPacketCnt = New System.Windows.Forms.Label()
         Me.grpConnect.SuspendLayout()
         Me.grpRead.SuspendLayout()
         Me.grpeFlexHeader.SuspendLayout()
@@ -202,7 +202,7 @@ Partial Class frmMain
         Me.txtHeaderDeviceType.Name = "txtHeaderDeviceType"
         Me.txtHeaderDeviceType.Size = New System.Drawing.Size(68, 20)
         Me.txtHeaderDeviceType.TabIndex = 13
-        Me.txtHeaderDeviceType.Text = "4"
+        Me.txtHeaderDeviceType.Text = "2"
         '
         'lblHeaderDeviceType
         '
@@ -249,6 +249,23 @@ Partial Class frmMain
         Me.grpeFlexHeader.TabStop = False
         Me.grpeFlexHeader.Text = "eFlex Header"
         Me.grpeFlexHeader.Visible = False
+        '
+        'txtPacketCount
+        '
+        Me.txtPacketCount.Location = New System.Drawing.Point(89, 305)
+        Me.txtPacketCount.Name = "txtPacketCount"
+        Me.txtPacketCount.Size = New System.Drawing.Size(68, 20)
+        Me.txtPacketCount.TabIndex = 38
+        Me.txtPacketCount.Text = "1"
+        '
+        'lblPacketCnt
+        '
+        Me.lblPacketCnt.AutoSize = True
+        Me.lblPacketCnt.Location = New System.Drawing.Point(11, 308)
+        Me.lblPacketCnt.Name = "lblPacketCnt"
+        Me.lblPacketCnt.Size = New System.Drawing.Size(72, 13)
+        Me.lblPacketCnt.TabIndex = 39
+        Me.lblPacketCnt.Text = "Packet Count"
         '
         'chkHeaderSeperate
         '
@@ -487,28 +504,11 @@ Partial Class frmMain
         Me.grpeFlexData.Text = "Data to Write"
         Me.grpeFlexData.Visible = False
         '
-        'txtPacketCount
-        '
-        Me.txtPacketCount.Location = New System.Drawing.Point(89, 305)
-        Me.txtPacketCount.Name = "txtPacketCount"
-        Me.txtPacketCount.Size = New System.Drawing.Size(68, 20)
-        Me.txtPacketCount.TabIndex = 38
-        Me.txtPacketCount.Text = "1"
-        '
-        'lblPacketCnt
-        '
-        Me.lblPacketCnt.AutoSize = True
-        Me.lblPacketCnt.Location = New System.Drawing.Point(11, 308)
-        Me.lblPacketCnt.Name = "lblPacketCnt"
-        Me.lblPacketCnt.Size = New System.Drawing.Size(72, 13)
-        Me.lblPacketCnt.TabIndex = 39
-        Me.lblPacketCnt.Text = "Packet Count"
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(733, 916)
+        Me.ClientSize = New System.Drawing.Size(733, 496)
         Me.Controls.Add(Me.pnleFlexData)
         Me.Controls.Add(Me.btnSendData)
         Me.Controls.Add(Me.pnleFlexHeader)
