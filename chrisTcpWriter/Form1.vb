@@ -606,8 +606,9 @@ Public Class frmMain
 
                 ' ----- Populate Payload Data -----
                 ' Setup Network Write Data
-                Dim writeBuffer() As Byte
-                ReDim writeBuffer(CInt(txtPacketLength.Text) + 44 - 1)
+                'Dim writeBuffer() As Byte
+                'ReDim writeBuffer(CInt(txtPacketLength.Text) + 44 - 1)
+                Dim writeBuffer(CInt(txtPacketLength.Text) + 44 - 1) As Byte
                 Buffer.BlockCopy(headerBytes, 0, writeBuffer, 0, 44)           ' Write HEADER
 
                 ' Get user input, convert to byte array, block copy
@@ -616,6 +617,12 @@ Public Class frmMain
                 bytes = BitConverter.GetBytes(CInt(txtPayloadControl.Text))
                 Array.Reverse(bytes)
                 Buffer.BlockCopy(bytes, 0, writeBuffer, 44 + 0, 4)
+
+                ' Initialize PUN memory
+                Dim whiteSpace As Byte = CByte(AscW(" "c))
+                For i = 48 To 128 Step 1
+                    writeBuffer(i) = whiteSpace
+                Next
 
                 ' Old PUN
                 Dim dataString As String = txtPayloadOldPun.Text
