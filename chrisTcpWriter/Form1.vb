@@ -630,10 +630,10 @@ Public Class frmMain
                 Buffer.BlockCopy(bytes, 0, writeBuffer, 44 + 44, dataString.Length)
 
                 ' Index
-                ReDim bytes(2)
+                ReDim bytes(4)
                 bytes = BitConverter.GetBytes(CInt(txtPayloadIndex.Text))
                 Array.Reverse(bytes)
-                Buffer.BlockCopy(bytes, 0, writeBuffer, 44 + 2786, 2)
+                Buffer.BlockCopy(bytes, 0, writeBuffer, 44 + 2784, 4)
 
                 ' ----- Write Data To Network -----
                 If chkHeaderSeperate.Checked Then
